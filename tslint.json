@@ -1,0 +1,26 @@
+{
+  "rulesDirectory": [
+    "codelyzer"
+  ],
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "component-selector": [
+      true,
+      "element",
+      [
+        "app"
+      ],
+      "kebab-case"
+    ],
+    "curly": [
+      false,
+      "as-needed"
+    ],
+    "template-i18n": [
+      false
+    ]
+  }
+}
