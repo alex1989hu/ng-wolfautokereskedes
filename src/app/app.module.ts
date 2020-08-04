@@ -12,6 +12,7 @@ import { HomeComponent } from "./components/home/home.component";
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent, HeaderComponent, HomeComponent, FooterComponent],
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
