@@ -5,7 +5,7 @@ import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-footer",
-  templateUrl: "./footer.component.html"
+  templateUrl: "./footer.component.html",
 })
 export class FooterComponent {
   public readonly authorName: string;

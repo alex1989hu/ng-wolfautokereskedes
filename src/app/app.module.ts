@@ -18,8 +18,8 @@ import { HomeComponent } from "./components/home/home.component";
     BrowserAnimationsModule,
     BrowserModule,
     FontAwesomeModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
   ],
-  providers: []
+  providers: [],
 })
 export class AppModule {}

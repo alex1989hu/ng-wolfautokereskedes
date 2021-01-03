@@ -6,5 +6,5 @@ export const environment = {
   authorName: "Alex Szakaly",
   authorUrl: "https://linkedin.com/in/alexszakaly",
   production: false,
-  sourceCodeUrl: "https://github.com/alex1989hu/ng-wolfautokereskedes"
+  sourceCodeUrl: "https://github.com/alex1989hu/ng-wolfautokereskedes",
 };

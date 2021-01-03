@@ -7,8 +7,8 @@ const routes: Routes = [];
   exports: [RouterModule],
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: "enabled"
-    })
-  ]
+      scrollPositionRestoration: "enabled",
+    }),
+  ],
 })
 export class AppRoutingModule {}

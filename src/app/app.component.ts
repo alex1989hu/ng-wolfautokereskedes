@@ -9,7 +9,7 @@ import { environment } from "../environments/environment";
     <app-home></app-home>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
-  `
+  `,
 })
 export class AppComponent {
   constructor(private readonly meta: Meta) {
@@ -18,7 +18,7 @@ export class AppComponent {
       { name: "linkedin", content: environment.authorUrl },
       { name: "source", content: environment.sourceCodeUrl },
       { name: "Robots", content: "all" },
-      { name: "Googlebot", content: "all" }
+      { name: "Googlebot", content: "all" },
     ]);
   }
 }
