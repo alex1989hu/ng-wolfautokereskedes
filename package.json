@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "prestart": "node git-version-gen.js",
+    "prestart": "node hack/git-version-gen.js",
     "start": "ng serve --host 0.0.0.0",
-    "prebuild": "node git-version-gen.js",
+    "prebuild": "node hack/git-version-gen.js",
     "build": "ng build --prod --build-optimizer",
-    "prelint": "node git-version-gen.js",
+    "prelint": "node hack/git-version-gen.js",
     "lint": "eslint -c .eslintrc.js --fix './src/**/*.ts'"
   },
   "private": true,
@@ -34,6 +34,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^11.0.0",
     "@angular-devkit/build-angular": "^0.1100.7",
     "@angular-eslint/eslint-plugin": "^1.1.0",
     "@angular/cli": "^11.0.7",
@@ -48,6 +49,7 @@
     "eslint-plugin-jsdoc": "^31.0.5",
     "eslint-plugin-prefer-arrow": "^1.2.2",
     "eslint-plugin-prettier": "^3.3.0",
+    "html-minifier": "^4.0.0",
     "prettier": "^2.2.1",
     "ts-node": "~9.1.1",
     "typescript": "~4.0.5",
