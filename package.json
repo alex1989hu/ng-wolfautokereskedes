@@ -34,7 +34,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^11.0.0",
+    "@angular-builders/custom-webpack": "^11.1.0",
     "@angular-devkit/build-angular": "^0.1102.1",
     "@angular-eslint/eslint-plugin": "^1.2.0",
     "@angular/cli": "^11.2.1",
@@ -46,7 +46,7 @@
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^32.1.0",
+    "eslint-plugin-jsdoc": "^32.2.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^3.3.0",
     "html-minifier": "^4.0.0",
