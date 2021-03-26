@@ -4,7 +4,7 @@ import { minify } from "html-minifier";
 export default (targetOptions: TargetOptions, indexHtml: string) =>
   minify(indexHtml, {
     collapseWhitespace: true,
-    minifyCSS: "clean-css",
+    minifyCSS: true,
     minifyJS: true,
     removeComments: true,
     removeOptionalTags: true,
