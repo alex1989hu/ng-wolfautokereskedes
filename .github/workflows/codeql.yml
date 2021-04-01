@@ -1,8 +1,9 @@
 name: codeql
 on:
   push:
+    branches-ignore:
+      - 'dependabot/**'
   pull_request:
-    branches: [ main, master ]
   schedule:
     - cron: '0 12 * * 6'
 jobs:
