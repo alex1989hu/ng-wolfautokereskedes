@@ -21,6 +21,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/wolfautokereskedes",
+            "deleteOutputPath": false,
             "index": "src/index.html",
             "indexTransform": "/hack/index.transform.ts",
             "main": "src/main.ts",
