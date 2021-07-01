@@ -10,6 +10,9 @@
     "prelint": "node hack/git-version-gen.js",
     "lint": "eslint -c .eslintrc.js --fix './src/**/*.ts'"
   },
+  "browserslist": [
+     "supports es6-module"
+   ],
   "private": true,
   "dependencies": {
     "@angular/animations": "^12.0.3",
