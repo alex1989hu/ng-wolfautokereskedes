@@ -8,15 +8,13 @@ Simple one page Angular app in Hungarian language to advert a service for specif
 - [Roboto fonts](https://fonts.google.com/specimen/Roboto)
 
 ## Development
-## Build and lint
+### Build and lint
 ```bash
-ng lint
-ng build --prod --build-optimizer
+npm run lint
+npm run build
 ```
 
-After build do not forget to **replace** `type="module"` to `type="text/javascript"` in generated [index.html](dist/wolfautokereskedes/index.html).
-For further details visit [angular-issue-30835](https://github.com/angular/angular/issues/30835).
-## Package update
+### Package update
 ```bash
 ng update
 npm update
