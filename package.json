@@ -41,7 +41,7 @@
     "@angular-eslint/eslint-plugin": "^12.5.0",
     "@angular/cli": "^12.2.8",
     "@angular/compiler-cli": "^12.2.8",
-    "@angular/language-service": "^12.2.6",
+    "@angular/language-service": "^12.2.8",
     "@types/html-minifier": "^4.0.1",
     "@types/node": "^16.10.2",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
