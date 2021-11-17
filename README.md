@@ -1,7 +1,7 @@
 # ng-wolfautokereskedes
 Simple one page Angular app in Hungarian language to advert a service for specific customers.
 ## Recipe
-- [Angular 12](https://angular.io)
+- [Angular 13](https://angular.io)
 - [Bootsrap 5](https://getbootstrap.com)
 - [Fontawesome 5](https://fontawesome.com)
 - [Icons8](https://icons8.com)
