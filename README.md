@@ -3,7 +3,7 @@ Simple one page Angular app in Hungarian language to advert a service for specif
 ## Recipe
 - [Angular 13](https://angular.io)
 - [Bootsrap 5](https://getbootstrap.com)
-- [Fontawesome 5](https://fontawesome.com)
+- [Fontawesome 6](https://fontawesome.com)
 - [Icons8](https://icons8.com)
 - [Roboto fonts](https://fonts.google.com/specimen/Roboto)
 
