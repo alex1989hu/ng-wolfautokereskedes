@@ -28,7 +28,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-brands-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
-    "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
+    "@nicky-lenaers/ngx-scroll-to": "^14.0.0",
     "bootstrap": "^5.2.0",
     "git-rev-sync": "^3.0.2",
     "rxjs": "^7.4.0",
