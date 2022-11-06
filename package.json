@@ -6,7 +6,7 @@
     "prestart": "node hack/git-version-gen.js",
     "start": "ng serve --host 0.0.0.0",
     "prebuild": "node hack/git-version-gen.js",
-    "build": "ng build --configuration production --build-optimizer",
+    "build": "ng build --configuration production --subresource-integrity --build-optimizer",
     "prelint": "node hack/git-version-gen.js",
     "lint": "eslint -c .eslintrc.js --fix './src/**/*.ts'"
   },
