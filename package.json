@@ -29,7 +29,7 @@
     "bootstrap": "^5.2.3",
     "git-rev-sync": "^3.0.2",
     "rxjs": "^7.4.0",
-    "tslib": "^2.4.1",
+    "tslib": "^2.5.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
