@@ -53,7 +53,7 @@
     "prettier": "^3.1.0",
     "ts-node": "~10.9.1",
     "typescript": "~5.2.2",
-    "webpack": "^5.76.0",
+    "webpack": "^5.89.0",
     "webpack-subresource-integrity": "^5.1.0"
   }
 }
