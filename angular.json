@@ -54,7 +54,7 @@
                   "inlineCritical": false
                 },
                 "fonts": false
-              }
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
