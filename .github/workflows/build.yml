@@ -26,7 +26,7 @@ jobs:
       run: npm run build
     - name: Deploy
       if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         dangerous-clean-slate: true
         local-dir: ./dist/wolfautokereskedes/
