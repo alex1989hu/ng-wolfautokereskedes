@@ -4,6 +4,7 @@ import { faAddressBook, faCoins } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
+  standalone: false,
 })
 export class HeaderComponent {
   public readonly faAddressBook = faAddressBook;

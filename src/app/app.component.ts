@@ -10,6 +10,7 @@ import { environment } from "../environments/environment";
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   `,
+  standalone: false,
 })
 export class AppComponent {
   constructor(private readonly meta: Meta) {

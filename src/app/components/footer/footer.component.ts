@@ -7,6 +7,7 @@ import { gitVersion } from "../../../environments/git-version";
 @Component({
   selector: "app-footer",
   templateUrl: "./footer.component.html",
+  standalone: false,
 })
 export class FooterComponent {
   public readonly authorName: string;
