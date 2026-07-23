@@ -36,7 +36,7 @@
     "@angular-builders/custom-webpack": "^20.0.0",
     "@angular-eslint/eslint-plugin": "^20.7.0",
     "@angular/build": "^20.3.15",
-    "@angular/cli": "^20.3.15",
+    "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^20.3.16",
     "@angular/language-service": "^20.3.16",
     "@types/html-minifier": "^4.0.5",
