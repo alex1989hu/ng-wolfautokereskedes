@@ -6,7 +6,7 @@
     "prestart": "node hack/git-version-gen.js",
     "start": "ng serve --host 0.0.0.0",
     "prebuild": "node hack/git-version-gen.js",
-    "build": "ng build --configuration production --subresource-integrity --build-optimizer",
+    "build": "ng build --configuration production --subresource-integrity",
     "prelint": "node hack/git-version-gen.js",
     "lint": "eslint -c .eslintrc.js --fix './src/**/*.ts'"
   },
@@ -33,13 +33,11 @@
     "zone.js": "~0.16.2"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^22.0.1",
     "@angular-eslint/eslint-plugin": "^21.4.0",
     "@angular/build": "^22.1.4",
     "@angular/cli": "^22.1.4",
     "@angular/compiler-cli": "^22.1.2",
     "@angular/language-service": "^22.1.2",
-    "@types/html-minifier": "^4.0.5",
     "@types/node": "^25.0.10",
     "@typescript-eslint/eslint-plugin": "^8.67.0",
     "@typescript-eslint/parser": "^8.67.0",
@@ -49,11 +47,8 @@
     "eslint-plugin-jsdoc": "^39.9.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.2.3",
-    "html-minifier": "^4.0.0",
     "prettier": "^3.4.2",
     "ts-node": "~10.9.2",
-    "typescript": "~6.0.3",
-    "webpack": "^5.97.1",
-    "webpack-subresource-integrity": "^5.1.0"
+    "typescript": "~6.0.3"
   }
 }
