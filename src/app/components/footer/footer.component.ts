@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faCar, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { environment } from "../../../environments/environment";
@@ -7,6 +7,7 @@ import { gitVersion } from "../../../environments/git-version";
 @Component({
   selector: "app-footer",
   templateUrl: "./footer.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class FooterComponent {

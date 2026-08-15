@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import {
   faAddressBook,
   faCheck,
@@ -15,6 +15,7 @@ import {
   selector: "app-home",
   styleUrls: ["./home.component.scss"],
   templateUrl: "./home.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HomeComponent {
