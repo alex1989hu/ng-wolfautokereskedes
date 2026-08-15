@@ -33,7 +33,7 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^20.0.0",
+    "@angular-builders/custom-webpack": "^22.0.1",
     "@angular-eslint/eslint-plugin": "^21.1.0",
     "@angular/build": "^20.3.15",
     "@angular/cli": "^20.3.34",
@@ -41,8 +41,8 @@
     "@angular/language-service": "^20.3.16",
     "@types/html-minifier": "^4.0.5",
     "@types/node": "^25.0.10",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/parser": "^8.67.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.31.0",
