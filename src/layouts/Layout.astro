@@ -9,6 +9,8 @@ interface Props {
   pageType?: "WebPage" | "ContactPage";
   /** Breadcrumb trail below the home page, emitted as BreadcrumbList. */
   breadcrumbs?: { name: string; path: string }[];
+  /** Keep the page out of search results and skip canonical and markdown links. */
+  noindex?: boolean;
   /** Emit FAQPage structured data, only for pages that show the FAQ. */
   faq?: boolean;
 }
@@ -18,6 +20,7 @@ const {
   description = site.description,
   pageType = "WebPage",
   breadcrumbs = [],
+  noindex = false,
   faq = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
@@ -139,8 +142,13 @@ const jsonLd = {
       name="keywords"
       content="eredetvizsgálat, eredetvizsga, eredetvizsga Szombathely, eredetvizsgálat ára, eredetiség vizsga, gépjárműátírás, eredetvizsga Vas megye"
     />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="text/markdown" href={markdownPath} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && (
+      <>
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" type="text/markdown" href={markdownPath} />
+      </>
+    )}
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

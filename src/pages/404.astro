@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Az oldal nem található – Wolf Autókereskedés" noindex>
+  <Header />
+  <main class="pt-20">
+    <section class="section">
+      <div class="page flex max-w-2xl flex-col items-start gap-4">
+        <span class="eyebrow">404</span>
+        <h1 class="text-4xl font-bold leading-tight tracking-[-0.025em] text-navy">
+          Az oldal nem található
+        </h1>
+        <p class="text-[17px] leading-relaxed text-muted">
+          A keresett oldal nem létezik vagy áthelyezésre került. Térjen vissza a kezdőlapra, vagy
+          nézze meg szolgáltatásainkat és árainkat.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="/" class="btn btn-primary">
+            Kezdőlap
+          </a>
+          <a href="/pricing/" class="btn btn-ghost">
+            Árak
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
