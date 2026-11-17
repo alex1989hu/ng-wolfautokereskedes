@@ -14,7 +14,7 @@ Business data (contact, prices, FAQ) lives in [site.ts](src/data/site.ts).
 
 ## Development
 
-Requires Node 24 (see [.nvmrc](.nvmrc), `nvm use` picks it up).
+Requires Node 26 (see [.nvmrc](.nvmrc), `nvm use` picks it up).
 
 ```bash
 npm install
