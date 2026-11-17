@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: '24'
     - name: Install dependencies
-      run: npm ci --legacy-peer-deps
+      run: npm ci
     - name: lint
       run: npm run lint
     - name: build
