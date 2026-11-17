@@ -5,6 +5,8 @@ export const site = {
   title: "Eredetvizsga Szombathelyen - Wolf Autókereskedés Szombathely",
   description:
     "Eredetvizsgálat Szombathelyen 22 950 Ft-tól, gépjárműátírás és ingyenes biztosításkötés egy helyen. Wolf Autókereskedés, Csákváry Péter. Tel.: +36-20-99999-15.",
+  // Paid services: vehicle transfer fee from 5 000 Ft up to the highest origin inspection price.
+  priceRange: "5 000–27 000 HUF",
   phone: { display: "+36-20-99999-15", href: "tel:+36209999915" },
   address: {
     street: "Farkas Károly utca 1.",
