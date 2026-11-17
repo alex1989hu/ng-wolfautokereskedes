@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import llms from "astro-llms-md";
 
 export default defineConfig({
-  site: "https://www.wolfautokereskedes.hu",
+  site: "https://wolfautokereskedes.hu",
   output: "static",
   integrations: [
     llms({

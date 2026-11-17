@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
-Sitemap: https://www.wolfautokereskedes.hu/sitemap.xml
+Sitemap: https://wolfautokereskedes.hu/sitemap.xml

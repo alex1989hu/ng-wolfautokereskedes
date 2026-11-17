@@ -1,7 +1,7 @@
 export const site = {
   name: "Wolf Autókereskedés",
   owner: "Csákváry Péter",
-  url: "https://www.wolfautokereskedes.hu",
+  url: "https://wolfautokereskedes.hu",
   title: "Eredetvizsga Szombathelyen - Wolf Autókereskedés Szombathely",
   description:
     "Eredetvizsgálat Szombathelyen 22 950 Ft-tól, gépjárműátírás és ingyenes biztosításkötés egy helyen. Wolf Autókereskedés, Csákváry Péter. Tel.: +36-20-99999-15.",
