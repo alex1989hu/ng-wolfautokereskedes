@@ -1,6 +1,7 @@
 ---
 import Banknote from "@lucide/astro/icons/banknote";
 import FileCheck from "@lucide/astro/icons/file-check";
+import CircleCheck from "@lucide/astro/icons/circle-check";
 import ClipboardList from "@lucide/astro/icons/clipboard-list";
 import TriangleAlert from "@lucide/astro/icons/triangle-exclamation-point";
 import { originInspectionPrices } from "../data/site";
@@ -27,17 +28,31 @@ const Heading = asPage ? "h1" : "h2";
       </p>
     </div>
 
-    <div
-      class="mb-10 flex items-start gap-4 rounded-xl border-l-4 border-warning bg-amber-50/70 p-4 shadow-sm"
-      role="note"
-    >
-      <TriangleAlert size={24} class="shrink-0 text-warning" aria-hidden="true" />
-      <div>
-        <p class="font-semibold text-navy">Időpont szükséges különleges autókhoz</p>
-        <p class="mt-0.5 text-muted">
-          Mercedes, BMW, Maserati, Ferrari stb. – különleges gyártmányú autók eredetvizsgálatához
-          időpont szükséges!
-        </p>
+    <div class="mb-10 flex flex-col gap-3">
+      <div
+        class="flex items-start gap-4 rounded-xl border-l-4 border-success bg-green-50/70 p-4 shadow-sm"
+        role="note"
+      >
+        <CircleCheck size={24} class="shrink-0 text-success" aria-hidden="true" />
+        <div>
+          <p class="font-semibold text-navy">Eredetvizsgálat azonnal, időpontfoglalás nélkül</p>
+          <p class="mt-0.5 text-muted">
+            Érkezzen hozzánk nyitvatartási időben, és azonnal elvégezzük a vizsgálatot.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex items-start gap-4 rounded-xl border-l-4 border-warning bg-amber-50/70 p-4 shadow-sm"
+        role="note"
+      >
+        <TriangleAlert size={24} class="shrink-0 text-warning" aria-hidden="true" />
+        <div>
+          <p class="font-semibold text-navy">Időpont szükséges különleges autókhoz</p>
+          <p class="mt-0.5 text-muted">
+            Mercedes, BMW, Maserati, Ferrari stb. – különleges gyártmányú autók eredetvizsgálatához
+            időpont szükséges!
+          </p>
+        </div>
       </div>
     </div>
 

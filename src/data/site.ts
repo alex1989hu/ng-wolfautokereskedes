@@ -113,6 +113,11 @@ export const services = [
 export const faqs = [
   {
     topics: ["origin-inspection"],
+    q: "Kell időpontot foglalnom az eredetvizsgálatra?",
+    a: "Nem, az eredetvizsgálatot nálunk azonnal, időpontfoglalás nélkül elvégezzük. Kivétel a különleges gyártmányú autók (Mercedes, BMW, Maserati, Ferrari stb.), ezekhez időpont szükséges.",
+  },
+  {
+    topics: ["origin-inspection"],
     q: "Milyen okmányok szükségesek az eredetvizsgálathoz?",
     a: "Magánszemély esetén a jármű forgalmi engedélye, a megrendelő személyazonosító igazolványa és lakcímkártyája, meghatalmazott esetén szabályos meghatalmazás. Céges gépjárműnél ezen felül cégkivonat és aláírási címpéldány másolata szükséges.",
   },
@@ -122,7 +127,7 @@ export const faqs = [
     a: "A hatósági bizonyítvány 60 napig használható fel gépjárműve átírásához.",
   },
   {
-    topics: ["origin-inspection", "insurance"],
+    topics: ["origin-inspection"],
     q: "Mennyi ideig tart a vizsgálat?",
     a: "Az eredetvizsgálat nagyjából 30 percet vesz igénybe, a biztosításkötés körülbelül 20 percet.",
   },
