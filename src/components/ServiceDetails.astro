@@ -27,7 +27,7 @@ import { faqs, originInspectionPrices, services, site } from "../data/site";
 
             {related.length > 0 && (
               <div class="mt-8 flex flex-col gap-2">
-                <h3 class="font-semibold text-navy">Gyakori kérdések</h3>
+                <h3 class="font-semibold text-navy">{s.title} – gyakori kérdések</h3>
                 {related.map((faq) => (
                   <details class="card group p-4 open:shadow-lift">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy [&::-webkit-details-marker]:hidden">
@@ -78,11 +78,13 @@ import { faqs, originInspectionPrices, services, site } from "../data/site";
             <div class="mt-6 flex flex-col gap-2">
               <a href={site.phone.href} class="btn btn-primary">
                 <Phone size={20} aria-hidden="true" />
-                Hívjon most
+                {s.callLabel}
               </a>
-              <a href="/pricing/" class="btn btn-ghost">
-                Összes ár
-              </a>
+              {s.id === "origin-inspection" && (
+                <a href="/pricing/" class="btn btn-ghost">
+                  Összes ár
+                </a>
+              )}
             </div>
           </aside>
         </div>
