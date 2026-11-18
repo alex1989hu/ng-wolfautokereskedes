@@ -34,4 +34,4 @@ npm run format   # Prettier check, use `npx prettier --write .` to fix
 
 ### SEO
 
-[robots.txt](public/robots.txt) and [sitemap.xml](public/sitemap.xml) are static files in `public/`. Search console tokens are `<meta>` tags in [Layout.astro](src/layouts/Layout.astro), plus `public/google68f2ed3cba4aae86.html` and `public/BingSiteAuth.xml`.
+[robots.txt](public/robots.txt) is a static file in `public/`. `sitemap.xml` is generated at build time in [astro.config.mjs](astro.config.mjs), with `lastmod` from the last git commit touching each page. Search console tokens are `<meta>` tags in [Layout.astro](src/layouts/Layout.astro), plus `public/google68f2ed3cba4aae86.html` and `public/BingSiteAuth.xml`.

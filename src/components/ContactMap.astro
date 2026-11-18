@@ -30,9 +30,9 @@ const Heading = asPage ? "h1" : "h2";
 
     <div class="grid items-stretch gap-10 lg:grid-cols-12">
       <div class="card flex flex-col gap-4 rounded-2xl bg-canvas p-10 shadow-md max-sm:p-6 lg:col-span-5">
-        <h3 class="text-[22px] leading-7 font-semibold tracking-[-0.01em] text-navy">
+        <h2 class="text-[22px] leading-7 font-semibold tracking-[-0.01em] text-navy">
           Hívjon bizalommal
-        </h3>
+        </h2>
         <a href={site.phone.href} class="btn btn-primary text-lg">
           <Phone size={22} aria-hidden="true" />
           {site.phone.display}
@@ -53,10 +53,10 @@ const Heading = asPage ? "h1" : "h2";
           </li>
         </ul>
         <div class="mt-2 border-t border-border-subtle pt-4">
-          <h3 class="mb-2 flex items-center gap-2 font-semibold text-navy">
+          <h2 class="mb-2 flex items-center gap-2 font-semibold text-navy">
             <Clock size={20} class="text-primary" aria-hidden="true" />
             Nyitvatartás
-          </h3>
+          </h2>
           <dl class="flex flex-col gap-1">
             {openingHours.map(({ label, hours }) => (
               <div class="flex justify-between gap-4">
