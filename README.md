@@ -28,9 +28,9 @@ npm run format   # Prettier check, use `npx prettier --write .` to fix
 
 ## Deployment
 
-### Cloudflare Pages (not active yet)
+### Cloudflare Pages
 
-[wrangler.jsonc](wrangler.jsonc) and [public/_headers](public/_headers) (CSP, security headers, caching) are ready for Cloudflare Pages. To switch, replace the FTP step with `cloudflare/wrangler-action` running `pages deploy dist --project-name=wolfautokereskedes` and add the secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+[wrangler.jsonc](wrangler.jsonc) and [public/_headers](public/_headers) (CSP, security headers, caching) are ready for Cloudflare Pages. Once the migration is complete, delete the FTP step from GitHub Action.
 
 ### Markdown for agents
 
