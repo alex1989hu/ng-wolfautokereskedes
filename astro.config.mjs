@@ -2,13 +2,14 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import llms from "astro-llms-md";
 import { execFileSync } from "node:child_process";
-import { appendFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, URL } from "node:url";
 
 const site = "https://wolfautokereskedes.hu";
 
 // Preload the latin and latin-ext fonts (ő and ű live in latin-ext) with a Link header too,
 // so Cloudflare can send early hints. File names are hashed, hence generated after the build.
+// The lines go into the existing "/*" block: a second "/*" block makes Cloudflare drop the first.
 const preloadFonts = () => ({
   name: "preload-font-headers",
   hooks: {
@@ -17,7 +18,16 @@ const preloadFonts = () => ({
       const links = readdirSync(assets)
         .filter((f) => /^hanken-grotesk-latin(-ext)?-wght-normal\..+\.woff2$/.test(f))
         .map((f) => `  Link: </_astro/${f}>; rel=preload; as=font; type="font/woff2"; crossorigin`);
-      appendFileSync(fileURLToPath(new URL("_headers", dir)), `\n/*\n${links.join("\n")}\n`);
+      const file = fileURLToPath(new URL("_headers", dir));
+      const rules = readFileSync(file, "utf8");
+      const endOfFirstBlock = rules.indexOf("\n\n");
+      if (!rules.startsWith("/*\n") || endOfFirstBlock === -1) {
+        throw new Error('_headers must start with a "/*" block');
+      }
+      writeFileSync(
+        file,
+        `${rules.slice(0, endOfFirstBlock)}\n${links.join("\n")}${rules.slice(endOfFirstBlock)}`,
+      );
     },
   },
 });
