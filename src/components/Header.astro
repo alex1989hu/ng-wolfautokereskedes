@@ -11,9 +11,17 @@ import { nav, site } from "../data/site";
       <span class="text-[11px] font-bold uppercase tracking-[0.08em] text-muted">Szombathely</span>
     </a>
 
-    <nav class="hidden items-center gap-6 lg:flex" aria-label="Főmenü">
+    <nav
+      id="main-menu"
+      popover
+      aria-label="Főmenü"
+      class="fixed top-[4.5rem] right-4 bottom-auto left-auto m-0 w-56 flex-col overflow-visible rounded-xl border-0 bg-card p-2 shadow-lift ring-1 ring-border-subtle open:flex lg:static lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-6 lg:rounded-none lg:bg-transparent lg:p-0 lg:shadow-none lg:ring-0"
+    >
       {nav.map((item) => (
-        <a href={item.href} class="text-muted transition-colors hover:text-primary">
+        <a
+          href={item.href}
+          class="rounded-lg px-3 py-2.5 font-medium text-navy transition-colors hover:bg-subtle lg:rounded-none lg:p-0 lg:font-normal lg:text-muted lg:hover:bg-transparent lg:hover:text-primary"
+        >
           {item.label}
         </a>
       ))}
@@ -27,27 +35,14 @@ import { nav, site } from "../data/site";
         </span>
       </a>
 
-      <details class="group relative lg:hidden">
-        <summary
-          class="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg bg-subtle text-navy [&::-webkit-details-marker]:hidden"
-          aria-label="Menü"
-        >
-          <Menu size={22} aria-hidden="true" />
-        </summary>
-        <nav
-          class="absolute right-0 top-12 flex w-56 flex-col rounded-xl bg-card p-2 shadow-lift ring-1 ring-border-subtle"
-          aria-label="Mobil menü"
-        >
-          {nav.map((item) => (
-            <a
-              href={item.href}
-              class="rounded-lg px-3 py-2.5 font-medium text-navy hover:bg-subtle"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </details>
+      <button
+        type="button"
+        popovertarget="main-menu"
+        class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-subtle text-navy lg:hidden"
+        aria-label="Menü"
+      >
+        <Menu size={22} aria-hidden="true" />
+      </button>
     </div>
   </div>
 </header>

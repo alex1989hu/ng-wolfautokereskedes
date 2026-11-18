@@ -35,11 +35,11 @@ export const openingHours = [
 ] as const;
 
 export const nav = [
-  { label: "Szolgáltatások", href: "/services/" },
-  { label: "Árak", href: "/pricing/" },
-  { label: "Miért mi?", href: "/#why-us" },
-  { label: "GYIK", href: "/#faq" },
-  { label: "Kapcsolat", href: "/contact/" },
+  { label: "Szolgáltatások", footerLabel: "Szolgáltatásaink", href: "/services/" },
+  { label: "Árak", footerLabel: "Árak és díjszabás", href: "/pricing/" },
+  { label: "Miért mi?", footerLabel: "Miért válasszon minket?", href: "/#why-us" },
+  { label: "GYIK", footerLabel: "Gyakori kérdések", href: "/#faq" },
+  { label: "Kapcsolat", footerLabel: "Kapcsolat és telephely", href: "/contact/" },
 ] as const;
 
 export const originInspectionPrices = [

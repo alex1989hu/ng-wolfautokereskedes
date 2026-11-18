@@ -18,7 +18,7 @@ import { nav, site } from "../data/site";
         {nav.map((item) => (
           <li>
             <a href={item.href} class="text-muted hover:text-primary">
-              {item.label}
+              {item.footerLabel}
             </a>
           </li>
         ))}
@@ -30,7 +30,7 @@ import { nav, site } from "../data/site";
         <span>{site.owner}</span>
         <span>{site.address.full}</span>
         <a href={site.phone.href} class="hover:text-primary">
-          {site.phone.display}
+          Tel.: {site.phone.display}
         </a>
       </address>
     </div>
