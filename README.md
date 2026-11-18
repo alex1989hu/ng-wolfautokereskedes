@@ -34,7 +34,7 @@ npm run format   # Prettier check, use `npx prettier --write .` to fix
 
 ### Markdown for agents
 
-Every page has a generated markdown twin (`/pricing/` → `/pricing.md`). [functions/_middleware.ts](functions/_middleware.ts) is a Cloudflare Pages Function that returns it for `Accept: text/markdown`. [public/_routes.json](public/_routes.json) limits the function to the four page paths, so assets never invoke it. Keep both in sync when adding a page. The response carries `X-Markdown-Tokens`, a rough token estimate (characters / 3). On the Workers Free plan every call counts towards 100,000 a day, so set "Fail open" under Workers & Pages → project → Settings → Runtime; pages then still load as HTML when the quota is used up. Try it with `curl -H "Accept: text/markdown" https://wolfautokereskedes.hu/pricing/`.
+Every page has a generated markdown twin (`/pricing/` → `/pricing.md`). [functions/_middleware.ts](functions/_middleware.ts) is a Cloudflare Pages Function that returns it for `Accept: text/markdown`. [public/_routes.json](public/_routes.json) limits the function to the four page paths, so assets never invoke it. Keep both in sync when adding a page. The response carries `X-Markdown-Tokens`, a rough token estimate (characters / 3). The build adds the same header to the static `.md` files through `_headers`, so keep the formula in [astro.config.mjs](astro.config.mjs) and the function in sync. On the Workers Free plan every call counts towards 100,000 a day, so set "Fail open" under Workers & Pages → project → Settings → Runtime; pages then still load as HTML when the quota is used up. Try it with `curl -H "Accept: text/markdown" https://wolfautokereskedes.hu/pricing/`.
 
 ### SEO
 

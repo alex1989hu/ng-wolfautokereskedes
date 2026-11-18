@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import llms from "astro-llms-md";
 import { execFileSync } from "node:child_process";
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, URL } from "node:url";
 
 const site = "https://wolfautokereskedes.hu";
@@ -48,6 +48,24 @@ const llmsTrailingSlash = () => ({
           .replace(/^(URL: )(\S+)$/gm, (_, a, url) => `${a}${withSlash(url)}`);
         writeFileSync(file, text);
       }
+    },
+  },
+});
+
+// Adds an X-Markdown-Tokens header to every generated markdown file, the same estimate
+// (characters / 3) as functions/_middleware.ts. Must run after llmsTrailingSlash(), which edits the files.
+const markdownTokenHeaders = () => ({
+  name: "markdown-token-headers",
+  hooks: {
+    "astro:build:done": ({ dir }) => {
+      const root = fileURLToPath(dir);
+      const blocks = [];
+      for (const name of readdirSync(root).filter((f) => f.endsWith(".md"))) {
+        const tokens = Math.ceil(readFileSync(`${root}${name}`, "utf8").length / 3);
+        const paths = name === "home.md" ? ["/home.md", "/index.md"] : [`/${name}`];
+        for (const path of paths) blocks.push(`${path}\n  X-Markdown-Tokens: ${tokens}`);
+      }
+      appendFileSync(`${root}_headers`, `\n${blocks.join("\n\n")}\n`);
     },
   },
 });
@@ -133,6 +151,7 @@ export default defineConfig({
       excludeSelectors: ["iframe", "svg"],
     }),
     llmsTrailingSlash(),
+    markdownTokenHeaders(),
   ],
   trailingSlash: "always",
   build: {
