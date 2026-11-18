@@ -32,6 +32,26 @@ const preloadFonts = () => ({
   },
 });
 
+// astro-llms-md 3.0.3 ignores its trailingSlash option and always strips the slash from the page
+// URLs it writes, but the canonical URLs end with one. Must be listed after llms() to run after it.
+const llmsTrailingSlash = () => ({
+  name: "llms-trailing-slash",
+  hooks: {
+    "astro:build:done": ({ dir }) => {
+      const withSlash = (url) => (url.endsWith("/") ? url : `${url}/`);
+      const root = fileURLToPath(dir);
+      const files = [...readdirSync(root).filter((f) => f.endsWith(".md")), "llms-full.txt"];
+      for (const name of files) {
+        const file = `${root}${name}`;
+        const text = readFileSync(file, "utf8")
+          .replace(/^(url: ")(.*)(")$/gm, (_, a, url, b) => `${a}${withSlash(url)}${b}`)
+          .replace(/^(URL: )(\S+)$/gm, (_, a, url) => `${a}${withSlash(url)}`);
+        writeFileSync(file, text);
+      }
+    },
+  },
+});
+
 // Shared by every page, a change here counts as a change of each page.
 const sharedSources = [
   "src/layouts",
@@ -111,8 +131,8 @@ export default defineConfig({
       description:
         "Eredetvizsgálat, gépjárműátírás és ingyenes biztosításkötés Szombathelyen. Árak, nyitvatartás és elérhetőség.",
       excludeSelectors: ["iframe", "svg"],
-      trailingSlash: "always",
     }),
+    llmsTrailingSlash(),
   ],
   trailingSlash: "always",
   build: {
