@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ContactMap from "../components/ContactMap.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  pageType="ContactPage"
+  breadcrumbs={[{ name: "Kapcsolat", path: "/contact/" }]}
+  title="Kapcsolat és telephely – Wolf Autókereskedés Szombathely"
+  description="Wolf Autókereskedés, Szombathely, Farkas Károly utca 1. (METRO körforgalom). Eredetvizsgálat és gépjárműátírás, hívja Csákváry Pétert: +36-20-99999-15."
+>
+  <Header />
+  <main class="pt-20">
+    <ContactMap asPage />
+  </main>
+  <Footer />
+</Layout>

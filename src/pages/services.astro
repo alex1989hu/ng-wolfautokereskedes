@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ServiceDetails from "../components/ServiceDetails.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Eredetvizsgálat, gépjárműátírás, biztosításkötés Szombathelyen | Wolf Autókereskedés"
+  description="Szolgáltatásaink Szombathelyen: eredetvizsgálat 22 950 Ft-tól, gépjárműátírás okmányirodában és ingyenes biztosításkötés 12 biztosítóval."
+  breadcrumbs={[{ name: "Szolgáltatások", path: "/services/" }]}
+>
+  <Header />
+  <main class="pt-20">
+    <header class="page pt-12">
+      <h1 class="text-4xl font-bold leading-tight tracking-[-0.025em] text-navy">
+        Eredetvizsgálat, gépjárműátírás és biztosításkötés Szombathelyen
+      </h1>
+    </header>
+    <ServiceDetails />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "@fontsource-variable/hanken-grotesk";
+
+@theme {
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #f8fafc;
+  --color-card: #ffffff;
+  --color-subtle: #f1f5f9;
+  --color-border-subtle: #e2e8f0;
+  --color-navy: #070e1a;
+  --color-ink: #131b2e;
+  --color-muted: #515f78;
+
+  --color-primary: #0045cc;
+  --color-primary-bright: #0d5bff;
+  --color-primary-tint: #dce1ff;
+  --color-surface-container: #eaedff;
+  --color-secondary-container: #d2e0fe;
+
+  --color-success: #10b981;
+  --color-success-ink: #047857;
+  --color-warning: #f59e0b;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+
+  --shadow-card: 0 4px 20px -2px rgb(10 25 47 / 0.04), 0 2px 6px -1px rgb(10 25 47 / 0.02);
+  --shadow-lift: 0 12px 32px -4px rgb(13 91 255 / 0.08), 0 4px 12px -2px rgb(10 25 47 / 0.04);
+  --shadow-cta: 0 4px 14px rgb(13 91 255 / 0.25);
+
+  --container-page: 80rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  ::selection {
+    background: var(--color-primary-tint);
+    color: #00164f;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6;
+  }
+  .section {
+    @apply py-16;
+  }
+  .eyebrow {
+    @apply block text-[11px] font-bold uppercase tracking-[0.08em] text-primary;
+  }
+  .h2 {
+    @apply text-[28px] leading-9 font-semibold tracking-[-0.015em] text-navy;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-bright;
+  }
+  .btn-primary {
+    @apply bg-primary-bright text-white shadow-cta hover:bg-[#0944c2];
+  }
+  .btn-ghost {
+    @apply bg-subtle text-navy hover:bg-surface-container;
+  }
+  .card {
+    @apply rounded-xl bg-card shadow-card transition-shadow;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-subtle px-2 py-0.5 text-sm font-medium text-muted;
+  }
+}

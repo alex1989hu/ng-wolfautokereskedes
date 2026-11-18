@@ -1,0 +1,93 @@
+---
+import Banknote from "@lucide/astro/icons/banknote";
+import FileCheck from "@lucide/astro/icons/file-check";
+import ClipboardList from "@lucide/astro/icons/clipboard-list";
+import TriangleAlert from "@lucide/astro/icons/triangle-exclamation-point";
+import { originInspectionPrices } from "../data/site";
+
+interface Props {
+  /** Render the heading as the page's h1 instead of an h2. */
+  asPage?: boolean;
+}
+
+const { asPage = false } = Astro.props;
+const Heading = asPage ? "h1" : "h2";
+---
+
+<section id="pricing" class="section bg-card">
+  <div class="page">
+    <div class="mb-6">
+      <div class="mb-1 flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.08em] text-primary">
+        <Banknote size={20} aria-hidden="true" /> Árak
+      </div>
+      <Heading class="h2">Eredetvizsgálat és ügyintézés díjszabása</Heading>
+    </div>
+
+    <div
+      class="mb-10 flex items-start gap-4 rounded-xl border-l-4 border-warning bg-amber-50/70 p-4 shadow-sm"
+      role="note"
+    >
+      <TriangleAlert size={24} class="shrink-0 text-warning" aria-hidden="true" />
+      <div>
+        <p class="font-semibold text-navy">Időpont szükséges különleges autókhoz</p>
+        <p class="mt-0.5 text-muted">
+          Mercedes, BMW, Maserati, Ferrari stb. – különleges gyártmányú autók eredetvizsgálatához
+          időpont szükséges!
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div class="card flex flex-col bg-canvas p-6">
+        <h3 class="mb-4 flex items-center gap-1 text-lg font-semibold text-navy">
+          <FileCheck size={20} class="text-primary" aria-hidden="true" /> Eredetvizsgálat
+        </h3>
+        <table class="w-full">
+          <caption class="sr-only">Eredetvizsgálat árai hengerűrtartalom szerint</caption>
+          <thead>
+            <tr class="text-left text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
+              <th scope="col" class="pb-2">
+                Kategória
+              </th>
+              <th scope="col" class="pb-2 text-right">
+                Ár
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {originInspectionPrices.map((row) => (
+              <tr class="border-t border-border-subtle first:border-t-0">
+                <td class="py-3">
+                  <span class="block font-semibold text-navy">{row.name}</span>{" "}
+                  <span class="text-[13px] text-muted">{row.detail}</span>
+                </td>
+                <td class="py-3 text-right text-lg font-bold tabular-nums text-navy">
+                  {row.price}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card flex flex-col justify-between gap-6 bg-canvas p-6">
+        <div>
+          <h3 class="mb-2 flex items-center gap-1 text-lg font-semibold text-navy">
+            <ClipboardList size={20} class="text-primary" aria-hidden="true" /> Gépjárműátírás
+          </h3>
+          <p class="mb-4 text-[13px] text-muted">
+            Átírás okmányirodában, sorban állás nélkül, bonyolultságtól függően.
+          </p>
+          <div class="flex items-center justify-between rounded-lg bg-card px-4 py-3 shadow-sm">
+            <span class="font-semibold text-navy">Ügyintézési díj</span>{" "}
+            <span class="text-lg font-bold tabular-nums text-navy">5 000 - 10 000 Ft</span>
+          </div>
+          <div class="mt-2 flex items-center justify-between rounded-lg bg-card px-4 py-3 shadow-sm">
+            <span class="font-semibold text-navy">Biztosításkötés átíráshoz</span>{" "}
+            <span class="text-lg font-bold text-success-ink">Ingyenes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

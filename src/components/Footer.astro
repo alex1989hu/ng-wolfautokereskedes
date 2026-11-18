@@ -1,0 +1,54 @@
+---
+import GitBranch from "@lucide/astro/icons/git-branch";
+import { nav, site } from "../data/site";
+---
+
+<footer class="bg-card shadow-[0_-4px_24px_rgb(10_25_47/0.03)]">
+  <div class="page grid gap-10 py-16 md:grid-cols-3">
+    <div class="flex flex-col gap-4">
+      <span class="text-[22px] font-semibold text-navy">Wolf Autó</span>
+      <p class="text-[13px] leading-5 text-muted">
+        Eredetvizsgálat, gépjárműátírás és ingyenes biztosításkötés Szombathelyen, sorban állás
+        nélkül.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <span class="text-lg font-semibold text-navy">Oldalak</span>
+      <ul class="flex flex-col gap-1">
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="text-muted hover:text-primary">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="flex flex-col gap-4">
+      <span class="text-lg font-semibold text-navy">Elérhetőség</span>
+      <address class="flex flex-col gap-1 text-[13px] not-italic text-muted">
+        <span>{site.owner}</span>
+        <span>{site.address.full}</span>
+        <a href={site.phone.href} class="hover:text-primary">
+          {site.phone.display}
+        </a>
+      </address>
+    </div>
+  </div>
+  <div class="page flex flex-col items-center justify-between gap-2 border-t border-subtle py-6 text-[13px] text-muted md:flex-row">
+    <p>
+      © {new Date().getFullYear()} {site.name}
+    </p>
+    <p class="flex flex-wrap items-center gap-x-2">
+      Made by{" "}
+      <a href={site.author.url} class="hover:text-primary">
+        {site.author.name}
+      </a>
+      <span aria-hidden="true">|</span>
+      <GitBranch size={14} aria-hidden="true" />
+      <a href={site.sourceUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary">
+        Source
+      </a>
+    </p>
+  </div>
+</footer>

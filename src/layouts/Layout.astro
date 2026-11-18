@@ -1,0 +1,169 @@
+---
+import "../styles/global.css";
+import { faqs, openingHours, originInspectionPrices, site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Schema.org type of the page itself. */
+  pageType?: "WebPage" | "ContactPage";
+  /** Breadcrumb trail below the home page, emitted as BreadcrumbList. */
+  breadcrumbs?: { name: string; path: string }[];
+  /** Emit FAQPage structured data, only for pages that show the FAQ. */
+  faq?: boolean;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  pageType = "WebPage",
+  breadcrumbs = [],
+  faq = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const absolute = (path: string) => new URL(path, site.url).href;
+
+const ogImage = absolute("/og-image.png");
+// astro-llms-md writes one markdown file per page, named after the path ("/" becomes home).
+const markdownPath = `/${Astro.url.pathname.replace(/^\/|\/$/g, "") || "home"}.md`;
+const businessId = `${site.url}/#business`;
+const websiteId = `${site.url}/#website`;
+
+const offer = (name: string, price: Record<string, unknown>) => ({
+  "@type": "Offer",
+  itemOffered: { "@type": "Service", name, areaServed: "Szombathely" },
+  priceCurrency: "HUF",
+  ...price,
+});
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AutoDealer",
+      "@id": businessId,
+      name: site.name,
+      url: site.url,
+      image: ogImage,
+      telephone: "+36209999915",
+      description: site.description,
+      hasMap: site.mapUrl,
+      sameAs: [site.mapUrl],
+      openingHoursSpecification: openingHours.flatMap(({ days, hours }) =>
+        hours ? [{ "@type": "OpeningHoursSpecification", dayOfWeek: days, ...hours }] : [],
+      ),
+      geo: { "@type": "GeoCoordinates", ...site.geo },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.street,
+        addressLocality: site.address.city,
+        postalCode: site.address.zip,
+        addressCountry: "HU",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Szolgáltatások",
+        itemListElement: [
+          ...originInspectionPrices.map((row) =>
+            offer(`Eredetvizsgálat (${row.detail})`, { price: row.price.replace(/\D/g, "") }),
+          ),
+          offer("Gépjárműátírás", {
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              minPrice: "5000",
+              maxPrice: "10000",
+              priceCurrency: "HUF",
+            },
+          }),
+          offer("Biztosításkötés", { price: "0" }),
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: site.url,
+      name: site.name,
+      inLanguage: "hu",
+      publisher: { "@id": businessId },
+    },
+    {
+      "@type": pageType,
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: "hu",
+      isPartOf: { "@id": websiteId },
+      about: { "@id": businessId },
+    },
+    ...(breadcrumbs.length
+      ? [
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [{ name: "Kezdőlap", path: "/" }, ...breadcrumbs].map(
+              (crumb, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: crumb.name,
+                item: absolute(crumb.path),
+              }),
+            ),
+          },
+        ]
+      : []),
+    ...(faq
+      ? [
+          {
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="eredetvizsgálat, eredetvizsga, eredetvizsga Szombathely, eredetvizsgálat ára, eredetiség vizsga, gépjárműátírás, eredetvizsga Vas megye"
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/markdown" href={markdownPath} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="google-site-verification" content="t6jj6PdI0AqSaeCCV35M-QNVKBzy_dxBgMjiBkNMFQo" />
+    <meta name="msvalidate.01" content="BC7D71710C09680190E15E9CB77D1011" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="hu_HU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Wolf Autókereskedés – eredetvizsgálat, átírás, biztosításkötés Szombathelyen"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0d5bff" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

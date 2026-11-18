@@ -1,0 +1,41 @@
+---
+const steps = [
+  {
+    title: "Érkezés / Kapcsolat",
+    text: "Látogasson el telephelyünkre Szombathelyen, vagy érdeklődjön telefonon.",
+  },
+  {
+    title: "Eredetvizsgálat",
+    text: "Nagyjából 30 perc alatt elvégezzük a vizsgálatot és kiállítjuk a bizonyítványt.",
+  },
+  {
+    title: "Biztosítás megkötése",
+    text: "12 biztosító ajánlatából kiválasztjuk a legkedvezőbbet és megkötjük a kötelezőt.",
+  },
+  {
+    title: "Átírás & Átvétel",
+    text: "Elintézzük az okmányirodát, Ön csak átveszi az új forgalmi engedélyt.",
+  },
+];
+---
+
+<ol class="card mt-10 grid gap-6 rounded-2xl p-10 max-sm:p-6 lg:grid-cols-4">
+  {steps.map((step, i) => (
+    <li class="flex flex-col gap-1">
+      <div class="flex items-center gap-2">
+        <span
+          class:list={[
+            "flex size-8 items-center justify-center rounded-full font-bold",
+            i === 0 ? "bg-primary-bright text-white" : "bg-subtle text-navy",
+          ]}
+          aria-hidden="true"
+          data-llms-ignore
+        >
+          {i + 1}
+        </span>
+        <h3 class="font-semibold text-navy">{step.title}</h3>
+      </div>
+      <p class="text-[13px] leading-[18px] text-muted">{step.text}</p>
+    </li>
+  ))}
+</ol>

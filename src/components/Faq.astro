@@ -1,0 +1,32 @@
+---
+import ChevronDown from "@lucide/astro/icons/chevron-down";
+import { faqs } from "../data/site";
+---
+
+<section id="faq" class="section">
+  <div class="page max-w-4xl!">
+    <div class="mb-10 text-center">
+      <span class="eyebrow mb-1">Segítség</span>
+      <h2 class="h2">Gyakran Ismételt Kérdések</h2>
+      <p class="mt-1 text-muted">
+        A legfontosabb tudnivalók az eredetvizsgálatról és az átírásról.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      {faqs.map((faq) => (
+        <details class="card group p-4 open:shadow-lift">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy [&::-webkit-details-marker]:hidden">
+            {faq.q}
+            <ChevronDown
+              size={20}
+              class="shrink-0 text-muted transition-transform group-open:rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="mt-2 border-t border-subtle pt-2 text-muted">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
