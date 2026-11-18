@@ -8,4 +8,8 @@ export default [
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
   ...astro.configs["jsx-a11y-recommended"],
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: { globals: { console: "readonly", fetch: "readonly" } },
+  },
 ];

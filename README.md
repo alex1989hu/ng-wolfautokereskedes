@@ -35,3 +35,5 @@ npm run format   # Prettier check, use `npx prettier --write .` to fix
 ### SEO
 
 [robots.txt](public/robots.txt) is a static file in `public/`. `sitemap.xml` is generated at build time in [astro.config.mjs](astro.config.mjs), with `lastmod` from the last git commit touching each page. Search console tokens are `<meta>` tags in [Layout.astro](src/layouts/Layout.astro), plus `public/google68f2ed3cba4aae86.html` and `public/BingSiteAuth.xml`.
+
+[IndexNow](https://www.indexnow.org): the key is the name of the hex `.txt` file in `public/`, which contains the same key. After each deploy, CI runs [indexnow.mjs](scripts/indexnow.mjs) to submit the sitemap URLs to Bing and other participating engines (not Google). Try it locally with `npm run build && node scripts/indexnow.mjs --dry-run`.
