@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import fontLatin from "@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-wght-normal.woff2?url";
+import fontLatinExt from "@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-ext-wght-normal.woff2?url";
 import { faqs, openingHours, originInspectionPrices, site } from "../data/site";
 
 interface Props {
@@ -138,6 +140,9 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {[fontLatin, fontLatinExt].map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
     <meta name="description" content={description} />
     <meta
       name="keywords"
