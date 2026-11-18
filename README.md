@@ -32,6 +32,10 @@ npm run format   # Prettier check, use `npx prettier --write .` to fix
 
 [wrangler.jsonc](wrangler.jsonc) and [public/_headers](public/_headers) (CSP, security headers, caching) are ready for Cloudflare Pages. To switch, replace the FTP step with `cloudflare/wrangler-action` running `pages deploy dist --project-name=wolfautokereskedes` and add the secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 
+### Markdown for agents
+
+Every page has a generated markdown twin (`/pricing/` → `/pricing.md`). [functions/_middleware.ts](functions/_middleware.ts) is a Cloudflare Pages Function that returns it for `Accept: text/markdown`. [public/_routes.json](public/_routes.json) limits the function to the four page paths, so assets never invoke it. Keep both in sync when adding a page. The response carries `X-Markdown-Tokens`, a rough token estimate (characters / 3). On the Workers Free plan every call counts towards 100,000 a day, so set "Fail open" under Workers & Pages → project → Settings → Runtime; pages then still load as HTML when the quota is used up. Try it with `curl -H "Accept: text/markdown" https://wolfautokereskedes.hu/pricing/`.
+
 ### SEO
 
 [robots.txt](public/robots.txt) is a static file in `public/`. `sitemap.xml` is generated at build time in [astro.config.mjs](astro.config.mjs), with `lastmod` from the last git commit touching each page. Search console tokens are `<meta>` tags in [Layout.astro](src/layouts/Layout.astro), plus `public/google68f2ed3cba4aae86.html` and `public/BingSiteAuth.xml`.
