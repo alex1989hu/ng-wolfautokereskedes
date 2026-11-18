@@ -43,3 +43,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           username: ${{ secrets.FTP_USERNAME }}
+      - name: Notify IndexNow
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        # A failed ping must not fail the deployment.
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
