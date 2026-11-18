@@ -1,6 +1,12 @@
 ---
-import GitBranch from "@lucide/astro/icons/git-branch";
+import IdCard from "@lucide/astro/icons/id-card";
+import MapPin from "@lucide/astro/icons/map-pin";
+import Smartphone from "@lucide/astro/icons/smartphone";
 import { nav, site } from "../data/site";
+
+const badge =
+  "flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary-bright/10 text-primary";
+const hover = "transition-colors group-hover:bg-primary-bright group-hover:text-white";
 ---
 
 <footer class="bg-card shadow-[0_-4px_24px_rgb(10_25_47/0.03)]">
@@ -26,29 +32,39 @@ import { nav, site } from "../data/site";
     </div>
     <div class="flex flex-col gap-4">
       <span class="text-lg font-semibold text-navy">Elérhetőség</span>
-      <address class="flex flex-col gap-1 text-[13px] not-italic text-muted">
-        <span>{site.owner}</span>
-        <span>{site.address.full}</span>
-        <a href={site.phone.href} class="hover:text-primary">
-          Tel.: {site.phone.display}
+      <address class="flex flex-col gap-3 text-sm not-italic text-muted">
+        <div class="flex items-center gap-3">
+          <span class={badge}>
+            <IdCard size={18} stroke-width={1.75} aria-hidden="true" />
+          </span>
+          {site.owner}
+        </div>
+        <a
+          href={site.mapUrl}
+          target="_blank"
+          rel="noopener"
+          class="group flex items-center gap-3 transition-colors hover:text-primary"
+        >
+          <span class:list={[badge, hover]}>
+            <MapPin size={18} stroke-width={1.75} aria-hidden="true" />
+          </span>
+          {site.address.full}
+        </a>
+        <a
+          href={site.phone.href}
+          class="group flex items-center gap-3 transition-colors hover:text-primary"
+        >
+          <span class:list={[badge, hover]}>
+            <Smartphone size={18} stroke-width={1.75} aria-hidden="true" />
+          </span>
+          {site.phone.display}
         </a>
       </address>
     </div>
   </div>
-  <div class="page flex flex-col items-center justify-between gap-2 border-t border-subtle py-6 text-[13px] text-muted md:flex-row">
+  <div class="page border-t border-subtle py-6 text-[13px] text-muted">
     <p>
       © {new Date().getFullYear()} {site.name}
-    </p>
-    <p class="flex flex-wrap items-center gap-x-2">
-      Made by{" "}
-      <a href={site.author.url} class="hover:text-primary">
-        {site.author.name}
-      </a>
-      <span aria-hidden="true">|</span>
-      <GitBranch size={14} aria-hidden="true" />
-      <a href={site.sourceUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary">
-        Source
-      </a>
     </p>
   </div>
 </footer>
