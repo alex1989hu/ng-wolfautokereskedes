@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import llms from "astro-llms-md";
 import { execFileSync } from "node:child_process";
-import { appendFileSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath, URL } from "node:url";
 
 const site = "https://wolfautokereskedes.hu";
@@ -52,20 +52,33 @@ const llmsTrailingSlash = () => ({
   },
 });
 
-// Adds an X-Markdown-Tokens header to every generated markdown file, the same estimate
+// Adds an X-Markdown-Tokens header to every generated markdown file and to llms.txt and
+// llms-full.txt (served as markdown too), the same estimate
 // (characters / 3) as functions/_middleware.ts. Must run after llmsTrailingSlash(), which edits the files.
 const markdownTokenHeaders = () => ({
   name: "markdown-token-headers",
   hooks: {
     "astro:build:done": ({ dir }) => {
       const root = fileURLToPath(dir);
+      const names = [
+        ...readdirSync(root).filter((f) => f.endsWith(".md")),
+        "llms.txt",
+        "llms-full.txt",
+      ];
+      let rules = readFileSync(`${root}_headers`, "utf8");
       const blocks = [];
-      for (const name of readdirSync(root).filter((f) => f.endsWith(".md"))) {
+      for (const name of names) {
         const tokens = Math.ceil(readFileSync(`${root}${name}`, "utf8").length / 3);
         const paths = name === "home.md" ? ["/home.md", "/index.md"] : [`/${name}`];
-        for (const path of paths) blocks.push(`${path}\n  X-Markdown-Tokens: ${tokens}`);
+        for (const path of paths) {
+          const header = `  X-Markdown-Tokens: ${tokens}`;
+          // A second block for the same path makes Cloudflare drop the first, so extend it.
+          if (rules.includes(`\n${path}\n`))
+            rules = rules.replace(`\n${path}\n`, `\n${path}\n${header}\n`);
+          else blocks.push(`${path}\n${header}`);
+        }
       }
-      appendFileSync(`${root}_headers`, `\n${blocks.join("\n\n")}\n`);
+      writeFileSync(`${root}_headers`, `${rules}\n${blocks.join("\n\n")}\n`);
     },
   },
 });
