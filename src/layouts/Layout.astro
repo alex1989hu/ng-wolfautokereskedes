@@ -29,6 +29,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
 const absolute = (path: string) => new URL(path, site.url).href;
 
 const ogImage = absolute("/og-image.png");
+const ogImageAlt = "Wolf Autókereskedés – eredetvizsgálat, átírás, biztosításkötés Szombathelyen";
 // astro-llms-md writes one markdown file per page, named after the path ("/" becomes home).
 const markdownPath = `/${Astro.url.pathname.replace(/^\/|\/$/g, "") || "home"}.md`;
 const businessId = `${site.url}/#business`;
@@ -169,11 +170,12 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Wolf Autókereskedés – eredetvizsgálat, átírás, biztosításkötés Szombathelyen"
-    />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     <meta name="theme-color" content="#0d5bff" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
