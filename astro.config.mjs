@@ -7,17 +7,22 @@ import { fileURLToPath, URL } from "node:url";
 
 const site = "https://wolfautokereskedes.hu";
 
-// Preload the latin and latin-ext fonts (ő and ű live in latin-ext) with a Link header too,
-// so Cloudflare can send early hints. File names are hashed, hence generated after the build.
+// Preload the stylesheet and the latin and latin-ext fonts (ő and ű live in latin-ext) with a Link
+// header too, so Cloudflare can send early hints. File names are hashed, hence generated after the build.
 // The lines go into the existing "/*" block: a second "/*" block makes Cloudflare drop the first.
 const preloadFonts = () => ({
   name: "preload-font-headers",
   hooks: {
     "astro:build:done": ({ dir }) => {
       const assets = fileURLToPath(new URL("_astro/", dir));
-      const links = readdirSync(assets)
+      const files = readdirSync(assets);
+      const styles = files
+        .filter((f) => f.endsWith(".css"))
+        .map((f) => `  Link: </_astro/${f}>; rel=preload; as=style`);
+      const fonts = files
         .filter((f) => /^hanken-grotesk-latin(-ext)?-wght-normal\..+\.woff2$/.test(f))
         .map((f) => `  Link: </_astro/${f}>; rel=preload; as=font; type="font/woff2"; crossorigin`);
+      const links = [...styles, ...fonts];
       const file = fileURLToPath(new URL("_headers", dir));
       const rules = readFileSync(file, "utf8");
       const endOfFirstBlock = rules.indexOf("\n\n");
