@@ -22,17 +22,34 @@ export const site = {
   sourceUrl: "https://github.com/alex1989hu/ng-wolfautokereskedes",
 } as const;
 
-/** Opening hours as shown on the Google Business Profile. A null time range means closed. */
+/**
+ * Opening hours as shown on the Google Business Profile. A null time range means closed.
+ * `originInspection` is false on days when the office is open but no origin inspection is done.
+ */
 export const openingHours = [
   {
     label: "Hétfő – Csütörtök",
     days: ["Monday", "Tuesday", "Wednesday", "Thursday"],
     hours: { opens: "09:00", closes: "16:00" },
+    originInspection: true,
   },
-  { label: "Péntek", days: ["Friday"], hours: { opens: "09:00", closes: "15:00" } },
-  { label: "Szombat", days: ["Saturday"], hours: { opens: "09:00", closes: "11:00" } },
-  { label: "Vasárnap", days: ["Sunday"], hours: null },
+  {
+    label: "Péntek",
+    days: ["Friday"],
+    hours: { opens: "09:00", closes: "15:00" },
+    originInspection: true,
+  },
+  {
+    label: "Szombat",
+    days: ["Saturday"],
+    hours: { opens: "09:00", closes: "11:00" },
+    originInspection: false,
+  },
+  { label: "Vasárnap", days: ["Sunday"], hours: null, originInspection: false },
 ] as const;
+
+/** Days the origin inspection is available, in running text. Keep in line with `openingHours`. */
+export const originInspectionDays = "hétfőtől péntekig";
 
 export const nav = [
   { label: "Szolgáltatások", footerLabel: "Szolgáltatásaink", href: "/services/" },
@@ -114,7 +131,12 @@ export const faqs = [
   {
     topics: ["origin-inspection"],
     q: "Kell időpontot foglalnom az eredetvizsgálatra?",
-    a: "Nem, az eredetvizsgálatot nálunk azonnal, időpontfoglalás nélkül elvégezzük. Kivétel a különleges gyártmányú autók (Mercedes, BMW, Maserati, Ferrari stb.), ezekhez időpont szükséges.",
+    a: `Nem, az eredetvizsgálatot nálunk azonnal, időpontfoglalás nélkül elvégezzük. Eredetvizsgálatot ${originInspectionDays} végzünk, szombaton és vasárnap nem. Kivétel a különleges gyártmányú autók (Mercedes, BMW, Maserati, Ferrari stb.), ezekhez időpont szükséges.`,
+  },
+  {
+    topics: ["origin-inspection"],
+    q: "Mikor tudok menni eredetvizsgára?",
+    a: `Eredetvizsgálatra ${originInspectionDays} várjuk, hétfőtől csütörtökig 9:00 – 16:00, pénteken 9:00 – 15:00 között. Szombaton és vasárnap eredetvizsgálatot nem végzünk, ezért hétvégére ne tervezze. Időpontot nem kell foglalni.`,
   },
   {
     topics: ["origin-inspection"],

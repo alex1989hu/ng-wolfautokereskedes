@@ -5,7 +5,7 @@ import IdCard from "@lucide/astro/icons/id-card";
 import Navigation from "@lucide/astro/icons/navigation";
 import Clock from "@lucide/astro/icons/clock";
 import map from "../assets/map.webp";
-import { openingHours, site } from "../data/site";
+import { openingHours, originInspectionDays, site } from "../data/site";
 
 const { latitude, longitude } = site.geo;
 const coordinates = encodeURIComponent(`${latitude},${longitude}`);
@@ -44,7 +44,8 @@ const Heading = asPage ? "h1" : "h2";
           Hívjon most: {site.phone.display}
         </a>
         <p class="text-[13px] text-muted">
-          Eredetvizsgálathoz nem kell időpontot foglalni, nyitvatartási időben várjuk.
+          Eredetvizsgálathoz nem kell időpontot foglalni, {originInspectionDays} várjuk
+          nyitvatartási időben. Szombaton eredetvizsgálat nincs.
         </p>
         <ul class="flex flex-col gap-3 pt-2 font-semibold text-navy">
           <li class="flex items-center gap-2">
@@ -67,11 +68,16 @@ const Heading = asPage ? "h1" : "h2";
             Nyitvatartás
           </h2>
           <dl class="flex flex-col gap-1">
-            {openingHours.map(({ label, hours }) => (
+            {openingHours.map(({ label, hours, originInspection }) => (
               <div class="flex justify-between gap-4">
                 <dt class="text-muted">{label}</dt>
-                <dd class="font-semibold tabular-nums text-navy">
-                  {hours ? `${hours.opens.replace(/^0/, "")} – ${hours.closes}` : "Zárva"}
+                <dd class="text-right font-semibold tabular-nums text-navy">
+                  {hours ? `${hours.opens.replace(/^0/, "")} – ${hours.closes}` : "Zárva"}{" "}
+                  {hours && !originInspection && (
+                    <span class="block text-[13px] font-normal text-muted">
+                      eredetvizsgálat nincs
+                    </span>
+                  )}
                 </dd>
               </div>
             ))}

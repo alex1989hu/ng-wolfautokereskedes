@@ -4,7 +4,7 @@ import FileCheck from "@lucide/astro/icons/file-check";
 import CircleCheck from "@lucide/astro/icons/circle-check";
 import ClipboardList from "@lucide/astro/icons/clipboard-list";
 import TriangleAlert from "@lucide/astro/icons/triangle-exclamation-point";
-import { originInspectionPrices } from "../data/site";
+import { originInspectionDays, originInspectionPrices } from "../data/site";
 
 interface Props {
   /** Render the heading as the page's h1 instead of an h2. */
@@ -37,7 +37,8 @@ const Heading = asPage ? "h1" : "h2";
         <div>
           <p class="font-semibold text-navy">Eredetvizsgálat azonnal, időpontfoglalás nélkül</p>
           <p class="mt-0.5 text-muted">
-            Érkezzen hozzánk nyitvatartási időben, és azonnal elvégezzük a vizsgálatot.
+            Érkezzen hozzánk {originInspectionDays} nyitvatartási időben, és azonnal elvégezzük a
+            vizsgálatot. Szombaton eredetvizsgálatot nem végzünk.
           </p>
         </div>
       </div>
